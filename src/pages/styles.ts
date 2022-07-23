@@ -6,6 +6,7 @@ export const toolsRes3 = 289.6;
 export const toolsRes4 = 217.6;
 export const bigRes = 899.9999;
 export const minRes = 599.9999;
+export const buttonColor = '#1685ec';
 
 export const RelativeContainer = styled.div<any>`
   height: 100%;
