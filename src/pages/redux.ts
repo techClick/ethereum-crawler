@@ -48,10 +48,13 @@ export const selectDate = (state: RootState) => state.pages.date;
 
 export default counterSlice.reducer;
 
-export const payBulk = () => async (dispatch: Function): Promise<IResponse> => {
+export const getTransactions = (
+  address: string, blockNumber: number, lastBlock: number,
+) => async (dispatch: Function): Promise<IResponse> => {
+  const tempKey = 'VGZKJM4UEK8Y4VGZH25I7HVGIGKD4TM724';
   const response: IResponse = await dispatch(
-    callEndpoint({ prefix: 1, api: 'V1.0/pay.php' }),
+    callEndpoint({ api: `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${blockNumber}&endblock=${lastBlock}&sort=asc&apikey=${tempKey}` }),
   );
-  // console.log('FINAL', response);
+  console.log('FINAL', response);
   return response;
 };

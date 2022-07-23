@@ -7,7 +7,6 @@ export type IResponse = {
 };
 
 export type CallArgs = {
-  prefix: 1 | 2,
   api: string,
   noStatus?: boolean,
   method?: string,

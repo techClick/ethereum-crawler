@@ -68,6 +68,7 @@ const HomePage = function HomePage() {
         <S.InputDiv>
           <S.Input
             isError={isBlockError}
+            type="number"
             value={block}
             onChange={(e: any) => {
               setIsBlockError(false);

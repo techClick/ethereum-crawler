@@ -1,7 +1,7 @@
 import { CallArgs, IResponse } from '../types/types';
 
 export const callEndpoint = ({
-  prefix, api, body, type = 'json',
+  api, body, type = 'json',
 }: CallArgs) => async (): Promise<IResponse> => {
   const options: any = {
     method: 'GET',
@@ -14,10 +14,9 @@ export const callEndpoint = ({
   };
   // if (noContentType) delete options.headers['Content-Type'];
   try {
-    const url = [process.env.REACT_APP_APIPRE, process.env.REACT_APP_APIPRE2][prefix];
     // console.log('calling ..... ', `${url}${api}`);
     const response = await fetch(
-      `${url}${api}`,
+      `${api}`,
       options,
     );
 
