@@ -7,5 +7,5 @@ export const CalendarPicker = styled.div<any>`
   bottom: 50%;
   right: 50%;
   transform: translate(50%, 50%);
-  z-index: 3;
+  z-index: 5;
 `;

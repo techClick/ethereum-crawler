@@ -7,8 +7,7 @@ import {
 import Loader from 'components/Loader';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
-// localStorage.clear();
-// localStorage.setItem('chartSheets', JSON.stringify([]));
+const ResultsPage = lazy(() => import('pages/ResultsPage/ResultsPage'));
 (document.body.style as any).zoom = '100%';
 
 const Routing = function Routing() {
@@ -18,6 +17,9 @@ const Routing = function Routing() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route exact path="/results">
+            <ResultsPage />
           </Route>
         </Switch>
       </Suspense>

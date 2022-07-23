@@ -6,8 +6,15 @@ export const Container = styled.div`
   padding: 30px 40px;
 `;
 
+export const PageName = styled.div`
+  font-size: 45px;
+  font-weight: 700;
+  margin-bottom: 55px;
+  color: ${Color('white').darken(0.8).toString()};
+`;
+
 export const WalletAdd = styled.div` 
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 600;
 `;
 
@@ -19,9 +26,9 @@ export const InputDiv = styled.div`
 
 export const Input = styled.input<any>` 
   width: 90%;
-  max-width: 300px;
+  max-width: 330px;
   height: 91%;
-  padding: 0 7px;
+  padding: 0 9px;
   border: ${(props) => props.isError && '2px solid red'};
 `;
 
@@ -54,8 +61,28 @@ export const Optional = styled.div`
   margin-top: -7px;
 `;
 
+export const Input2Div = styled.div`
+  position: relative;
+`;
+
 export const Input2 = styled(Input)` 
-  max-width: 200px;
+  max-width: 150px;
+`;
+
+export const EscapeIconCont = styled.div` 
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(50%);
+  right: 8px;
+  color: grey;
+`;
+
+export const EscapeIcon = styled.div`
+  transform: scale(0.5);
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
 `;
 
 export const SelectDateButton = styled.div`
