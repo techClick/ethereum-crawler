@@ -32,7 +32,7 @@ export const callEndpoint = ({
     } else {
       dataFromEndPoint = await response.text();
     }
-    return dataFromEndPoint as IResponse;
+    return { status: 'success', data: dataFromEndPoint.result ? dataFromEndPoint.result : [] } as IResponse;
   } catch (e: any) {
     return { status: 'error', description: e.message } as IResponse;
   }

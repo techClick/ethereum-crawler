@@ -55,6 +55,5 @@ export const getTransactions = (
   const response: IResponse = await dispatch(
     callEndpoint({ api: `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${blockNumber}&endblock=${lastBlock}&sort=asc&apikey=${tempKey}` }),
   );
-  console.log('FINAL', response);
   return response;
 };

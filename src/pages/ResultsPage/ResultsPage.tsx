@@ -6,9 +6,11 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useAppSelector } from 'redux/hooks';
 import * as S from './ResultsPage.styled';
+import ResultsTable from './ResultsTable/ResultsTable';
 
 const ResultsPage = function ResultsPage() {
   const [latestBlockNumber, setLatestBlockNumber] = useState<any>();
+  const [searchResults, setSearchResults] = useState<any>();
   const walletAddress = useAppSelector(selectWalletAddress);
   const block = Number(useAppSelector(selectBlock));
   const date = useAppSelector(selectDate);
@@ -23,7 +25,17 @@ const ResultsPage = function ResultsPage() {
       const latestBlock = await web3.eth.getBlock('latest');
       setLatestBlockNumber(latestBlock.number);
       const lastBlockNumber = latestBlock.number;
-      const response: any = dispatch(getTransactions(walletAddress, block, lastBlockNumber));
+      const response: any = await dispatch(getTransactions(walletAddress, block, lastBlockNumber));
+      if (response.status === 'success') {
+        const results = response.data.map((item: any) => {
+          return {
+            ...item,
+            timeStamp: getDateFormat(new Date(item.timeStamp * 1000)),
+          };
+        });
+        console.log(results);
+        setSearchResults(results);
+      }
     };
     if (block && walletAddress) {
       getBlockData();
@@ -39,10 +51,11 @@ const ResultsPage = function ResultsPage() {
       >
         New search
       </S.NewButton>
-      <S.PageName>SEARCH RESULT</S.PageName>
-      <S.Detail1>{`ADDRESS: ${walletAddress}`}</S.Detail1>
+      {/* <S.PageName>{walletAddress}</S.PageName> */}
+      {/* <S.Detail1>{`ADDRESS: ${walletAddress}`}</S.Detail1> */}
       { latestBlockNumber && <S.Detail>{`BLOCK: ${block} - ${latestBlockNumber}`}</S.Detail>}
       { date && <S.Detail>{getDateFormat(date)}</S.Detail>}
+      {searchResults && <ResultsTable results={searchResults} />}
     </S.Container>
   );
 };
