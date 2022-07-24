@@ -33,7 +33,6 @@ const ResultsPage = function ResultsPage() {
             timeStamp: getDateFormat(new Date(item.timeStamp * 1000)),
           };
         });
-        console.log(results);
         setSearchResults(results);
       }
     };
@@ -52,7 +51,7 @@ const ResultsPage = function ResultsPage() {
         New search
       </S.NewButton>
       {/* <S.PageName>{walletAddress}</S.PageName> */}
-      {/* <S.Detail1>{`ADDRESS: ${walletAddress}`}</S.Detail1> */}
+      <S.Detail1>{`ADDRESS: ${walletAddress}`}</S.Detail1>
       { latestBlockNumber && <S.Detail>{`BLOCK: ${block} - ${latestBlockNumber}`}</S.Detail>}
       { date && <S.Detail>{getDateFormat(date)}</S.Detail>}
       {searchResults && <ResultsTable results={searchResults} />}
