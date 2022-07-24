@@ -17,7 +17,7 @@ const ResultsTable = function ResultsTable({ results }:{ results: any }) {
     cumulativegasused: 'CUMULATIVE GAS USED',
     gasused: 'GAS USED',
     methodid: 'METHOD ID',
-    functionname: 'FUNCTION NAME', 
+    functionname: 'FUNCTION NAME',
   };
 
   const columns = Object.entries(results[0]).map(([key]) => {
