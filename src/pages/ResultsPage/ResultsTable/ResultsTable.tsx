@@ -40,7 +40,7 @@ const ResultsTable = function ResultsTable({ results }:{ results: any }) {
           rowStyle: {
             fontSize: 15,
           },
-          maxBodyHeight: '450px',
+          maxBodyHeight: '60vh',
         }}
       />
     </S.Container>

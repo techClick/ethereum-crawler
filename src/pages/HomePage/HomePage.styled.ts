@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 30px 40px;
+  min-width: 574px;
 `;
 
 export const PageName = styled.div`
@@ -24,9 +25,8 @@ export const InputDiv = styled.div`
   margin-top: 5px;
 `;
 
-export const Input = styled.input<any>` 
-  width: 90%;
-  max-width: 330px;
+export const Input = styled.input<any>`
+  width: 330px;
   height: 91%;
   padding: 0 9px;
   border: ${(props) => props.isError && '2px solid red'};
@@ -66,7 +66,7 @@ export const Input2Div = styled.div`
 `;
 
 export const Input2 = styled(Input)` 
-  max-width: 150px;
+  width: 150px;
 `;
 
 export const EscapeIconCont = styled.div` 

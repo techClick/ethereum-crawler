@@ -14,13 +14,13 @@ export const callEndpoint = ({
   };
   // if (noContentType) delete options.headers['Content-Type'];
   try {
-    // console.log('calling ..... ', `${url}${api}`);
+    console.log('calling ..... ', `${api}`);
     const response = await fetch(
       `${api}`,
       options,
     );
 
-    // console.log('response', response);
+    console.log('response', response);
     if (!response) {
       return { status: 'error', description: 'Internet connection is not detected' } as IResponse;
     }
@@ -32,6 +32,7 @@ export const callEndpoint = ({
     } else {
       dataFromEndPoint = await response.text();
     }
+    console.log('response2', dataFromEndPoint);
     return { status: 'success', data: dataFromEndPoint.result ? dataFromEndPoint.result : [] } as IResponse;
   } catch (e: any) {
     return { status: 'error', description: e.message } as IResponse;
