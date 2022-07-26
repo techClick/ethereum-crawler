@@ -52,9 +52,19 @@ export const getTransactions = (
   address: string, blockNumber: number, lastBlock: number,
 ) => async (dispatch: Function): Promise<IResponse> => {
   const tempKey = 'VGZKJM4UEK8Y4VGZH25I7HVGIGKD4TM724';
-  console.log('Loading transctions');
   const response: IResponse = await dispatch(
     callEndpoint({ api: `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${blockNumber}&endblock=${lastBlock}&sort=asc&apikey=${tempKey}` }),
+  );
+  return response;
+};
+
+export const getAllTransactions = (
+  address: string, startBlock: number,
+) => async (dispatch: Function): Promise<IResponse> => {
+  const tempKey = 'VGZKJM4UEK8Y4VGZH25I7HVGIGKD4TM724';
+  console.log('getting block', startBlock);
+  const response: IResponse = await dispatch(
+    callEndpoint({ api: `https://api.etherscan.io/api?module=account&action=txlist&startblock=${startBlock}&endblock=latest&address=${address}&apikey=${tempKey}&page=1&offset=${10000}` }),
   );
   return response;
 };

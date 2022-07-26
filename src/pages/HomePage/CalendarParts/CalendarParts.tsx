@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Calendar from 'react-calendar';
-import { date as setDate, showPopup as setShowPopup } from 'pages/redux';
+import { block, date as setDate, showPopup as setShowPopup } from 'pages/redux';
 import * as S from './CalendarParts.styled';
 import './react-calendar.css';
 
@@ -13,6 +13,7 @@ const CalendarParts = function CalendarParts() {
       <Calendar
         value={new Date()}
         onChange={(value: Date) => {
+          dispatch(block(''));
           dispatch(setDate(value));
           dispatch(setShowPopup({}));
         }}

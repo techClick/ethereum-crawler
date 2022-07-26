@@ -7,20 +7,17 @@ export const callEndpoint = ({
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // 'SecurityToken': creds?.token ? creds.token : token ? `${token}` : null,
-      // 'UserToken': creds?.users ? creds.users[0].token : null
     },
     body,
   };
-  // if (noContentType) delete options.headers['Content-Type'];
   try {
-    console.log('calling ..... ', `${api}`);
+    // console.log('calling ..... ', api);
     const response = await fetch(
       `${api}`,
       options,
     );
 
-    console.log('response', response);
+    // console.log('response', response);
     if (!response) {
       return { status: 'error', description: 'Internet connection is not detected' } as IResponse;
     }

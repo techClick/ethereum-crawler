@@ -42,6 +42,7 @@
       "react/require-default-props": 0,
       "consistent-return": 0,
       "camelcase": 0,
-      "function-paren-newline": 0
+      "function-paren-newline": 0,
+      "no-await-in-loop": 0
     }
 }

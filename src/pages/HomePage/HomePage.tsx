@@ -15,7 +15,6 @@ import * as S from './HomePage.styled';
 
 const HomePage = function HomePage() {
   const [isAddressError, setIsAddressError] = useState<boolean>(false);
-  const [isBlockError, setIsBlockError] = useState<boolean>(false);
   const walletAddress = useAppSelector(selectWalletAddress);
   const block = useAppSelector(selectBlock);
   const date = useAppSelector(selectDate);
@@ -23,10 +22,13 @@ const HomePage = function HomePage() {
   const history = useHistory();
 
   const handleSubmit = () => {
-    if (!walletAddress) setIsAddressError(true);
-    if (!block) setIsBlockError(true);
-    if (!walletAddress || !block) {
-      toast('Both wallet address and block are required to proceed', { type: 'error' });
+    if (!walletAddress) {
+      setIsAddressError(true);
+      toast('Wallet address is required to proceed', { type: 'error' });
+      return;
+    }
+    if ((!block && !date)) {
+      toast('Block or date is required to proceed', { type: 'error' });
       return;
     }
     history.push('/results');
@@ -52,24 +54,27 @@ const HomePage = function HomePage() {
         </S.AutoButton>
       </S.InputDiv>
       <S.Block>Block</S.Block>
+      <S.Optional>Shows transactions starting from given block</S.Optional>
       <S.InputDiv>
         <S.Input
-          isError={isBlockError}
           type="number"
           value={block}
           onChange={(e: any) => {
-            setIsBlockError(false);
+            dispatch(setDate(null));
             dispatch(setBlock(e.target.value));
           }}
         />
         <S.AutoButton
-          onClick={() => dispatch(setBlock('9000000'))}
+          onClick={() => {
+            dispatch(setDate(null));
+            dispatch(setBlock('9000000'));
+          }}
         >
           Use test block
         </S.AutoButton>
       </S.InputDiv>
       <S.Block>Date</S.Block>
-      <S.Optional>Date is optional</S.Optional>
+      <S.Optional>Shows ETH balance at given date</S.Optional>
       <S.InputDiv>
         <S.Input2Div>
           <S.Input2
@@ -93,6 +98,7 @@ const HomePage = function HomePage() {
         </S.SelectDateButton>
         <S.AutoButton
           onClick={() => {
+            dispatch(setBlock(''));
             dispatch(setDate(new Date(new Date().setFullYear(new Date().getFullYear() - 1))));
           }}
         >
